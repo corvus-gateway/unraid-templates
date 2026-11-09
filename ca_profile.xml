@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<CommunityApplications>
+  <Profile>Unraid templates for [Corvus AWPG](https://corvusgateway.org/), a self-hosted web gateway: reverse proxy with free certificates, attack blocking, a traffic monitor and an access queue. Questions and problems: [GitHub Discussions](https://github.com/corvus-gateway/corvus/discussions) or [issues](https://github.com/corvus-gateway/corvus/issues).</Profile>
+  <Icon>https://raw.githubusercontent.com/corvus-gateway/unraid-templates/main/icon.png</Icon>
+  <WebPage>https://corvusgateway.org/</WebPage>
+</CommunityApplications>

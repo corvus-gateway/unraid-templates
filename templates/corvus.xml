@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>Corvus</Name>
+  <Repository>ghcr.io/corvus-gateway/gateway:latest</Repository>
+  <Registry>https://github.com/corvus-gateway/corvus/pkgs/container/gateway</Registry>
+  <Network>bridge</Network>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/corvus-gateway/corvus/discussions</Support>
+  <Project>https://corvusgateway.org/</Project>
+  <Overview>Self-hosted web gateway: reverse proxy with free Let's Encrypt certificates, as easy as Nginx Proxy Manager, plus attack blocking (WAF rules, auto-bans, rate limits, browser challenge), a real-time traffic monitor, alerts and an access queue (waiting room). One container; the admin console runs on port 9443.[br][br]Unraid's own web interface usually uses ports 80 and 443, so this template publishes Corvus on 1880 (HTTP) and 18443 (HTTPS). Forward 80 and 443 from your router to these ports, or give the container its own IP (br0 / custom network). The one-time setup token for the first sign-in is in the container log; or set Setup Token before the first start.</Overview>
+  <Category>Network:Proxy Security:</Category>
+  <ExtraSearchTerms>reverse proxy nginx npm waf letsencrypt waiting room gateway</ExtraSearchTerms>
+  <WebUI>https://[IP]:[PORT:9443]</WebUI>
+  <TemplateURL>https://raw.githubusercontent.com/corvus-gateway/unraid-templates/main/templates/corvus.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/corvus-gateway/unraid-templates/main/icon.png</Icon>
+  <License>Apache-2.0</License>
+  <Screenshot>https://corvusgateway.org/img/dashboard.png</Screenshot>
+  <Screenshot>https://corvusgateway.org/img/proxy-hosts.png</Screenshot>
+  <Screenshot>https://corvusgateway.org/img/traffic.png</Screenshot>
+  <Date>2026-11-09</Date>
+  <Changes>Initial template. Release notes: https://github.com/corvus-gateway/corvus/releases</Changes>
+  <Config Name="Admin console" Target="9443" Default="9443" Mode="tcp" Description="Admin console (HTTPS, self-signed certificate at first). Keep it closed to the internet." Type="Port" Display="always" Required="true" Mask="false">9443</Config>
+  <Config Name="HTTP" Target="80" Default="1880" Mode="tcp" Description="Your sites over HTTP and Let's Encrypt HTTP validation. Forward port 80 from your router here." Type="Port" Display="always" Required="true" Mask="false">1880</Config>
+  <Config Name="HTTPS" Target="443" Default="18443" Mode="tcp" Description="Your sites over HTTPS. Forward port 443 from your router here." Type="Port" Display="always" Required="true" Mask="false">18443</Config>
+  <Config Name="Data" Target="/data" Default="/mnt/user/appdata/corvus" Mode="rw" Description="Database, certificates and encryption keys. Back up this folder, especially secrets/." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/corvus</Config>
+  <Config Name="Setup Token" Target="CORVUS_SETUP_TOKEN" Default="" Mode="" Description="Optional: choose the one-time setup token for the first sign-in (at least 12 characters). Empty: a random token is written to the container log." Type="Variable" Display="always" Required="false" Mask="true"></Config>
+  <Config Name="Admin console names" Target="CORVUS_ADMIN_HOSTS" Default="" Mode="" Description="Optional: extra names or IPs for the admin console certificate, e.g. corvus.example.com,192.168.1.10" Type="Variable" Display="advanced" Required="false" Mask="false"></Config>
+  <Config Name="PUID" Target="PUID" Default="99" Mode="" Description="User that owns the Data folder (Unraid default: 99, nobody)." Type="Variable" Display="advanced" Required="false" Mask="false">99</Config>
+  <Config Name="PGID" Target="PGID" Default="100" Mode="" Description="Group that owns the Data folder (Unraid default: 100, users)." Type="Variable" Display="advanced" Required="false" Mask="false">100</Config>
+</Container>
